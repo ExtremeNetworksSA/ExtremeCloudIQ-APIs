@@ -20,10 +20,6 @@ url = f"{baseUrl}/users/grid-export"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {'startTime': f'{myStartTime}', 'endTime': f'{myEndTime}'}
 body = {
-  "user_name": [
-    "string",
-    "string"
-  ],
   "source": [
     "string",
     "string"
@@ -31,32 +27,10 @@ body = {
   "site_ids": [
     site_id
   ],
-  "status": True,
-  "duration": [
-    {
-      "column_name": "string",
-      "filter_type": "NEQ",
-      "value": 2907,
-      "min": 1313,
-      "max": 7816
-    },
-    {
-      "column_name": "string",
-      "filter_type": "NEQ",
-      "value": 5746,
-      "min": 1160,
-      "max": 3054
-    }
-  ],
-  "user_ids": [
-    2214,
-    7804
-  ]
+  "status": True
 }
 # search: string (disabled)
-# sortField: SESSION_DURATION (disabled)
-# order: ASC (disabled)
-# timezoneOffset: None (disabled)
+# timezoneOffset:  (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 

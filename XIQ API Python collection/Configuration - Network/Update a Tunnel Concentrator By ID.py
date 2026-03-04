@@ -23,18 +23,22 @@ body = {
   "backup_vlan": 4094,
   "primary_tagged": True,
   "backup_tagged": True,
-  "tunnel_address": "252.194.241.253/30",
+  "tunnel_address": "252.253.8.166/18",
   "router_id": 0,
   "gateway": "string",
   "native_vlan": 4094,
   "block_non_essential_broadcast": True,
   "arp_proxy": True,
+  "internal_mgmt_vlan": 4094,
+  "keep_alive_interval": 60,
+  "keep_alive_retries": 10,
   "multicast_rules": [
     {
       "ip": "string"
     }
   ]
 }
+
 
 
 response = requests.put(url, headers=headers, params=params)

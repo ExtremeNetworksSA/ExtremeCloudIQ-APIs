@@ -10,7 +10,11 @@ headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
 body = {
   "username": "username",
-  "password": "password"
+  "password": "password"//,
+  //"rate_limit":{
+   // "hour": 7500,
+    //"second": 7500
+  //}
 }
 
 

@@ -8,8 +8,8 @@ headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
 body = {
   "id": 0,
-  "start_time": "2025-11-13T14:55:34.289Z",
-  "end_time": "2025-11-13T14:55:34.289Z",
+  "start_time": "2026-02-10T17:23:24.625Z",
+  "end_time": "2026-02-10T17:23:24.625Z",
   "org_id": 0,
   "name": "string",
   "duration": 604800,
@@ -50,8 +50,8 @@ body = {
     {
       "id": 0,
       "org_id": 0,
-      "start_time": "2025-11-13T14:55:34.289Z",
-      "end_time": "2025-11-13T14:55:34.289Z",
+      "start_time": "2026-02-10T17:23:24.625Z",
+      "end_time": "2026-02-10T17:23:24.625Z",
       "device_id": 0,
       "hostname": "string",
       "mac_address": "string",

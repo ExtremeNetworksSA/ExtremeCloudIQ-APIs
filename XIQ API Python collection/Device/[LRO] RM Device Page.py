@@ -47,7 +47,7 @@ body = {
     }
   ]
 }
-# keyword: None (disabled)
+# keyword:  (disabled)
 # connected: true (disabled)
 # adminStates: NEW (disabled)
 # deviceCategory: WIRELESS (disabled)

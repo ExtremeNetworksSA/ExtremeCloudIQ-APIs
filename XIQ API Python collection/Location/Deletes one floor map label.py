@@ -1,16 +1,17 @@
 import requests
          
+floorId = '4987'
+labelId = '4987'
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/locations/floor/{floorId}/label/{labelId}"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = 0
 
 
-response = requests.post(url, headers=headers, params=params)
+
+response = requests.delete(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

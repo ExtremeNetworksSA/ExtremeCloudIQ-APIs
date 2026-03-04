@@ -8,7 +8,7 @@ url = f"{baseUrl}/airrm/ap/radioInfo/"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
 body = {
-  "serial_number": sn,
+  "serial_number": "sn",
   "airrm_id": 4985
 }
 

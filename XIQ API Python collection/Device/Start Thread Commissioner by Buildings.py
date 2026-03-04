@@ -1,13 +1,20 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/devices/thread/commissioner/start"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = 0
+body = {
+  "building_ids": [
+    4265,
+    7911
+  ],
+  "owner_id": 1330,
+  "comm_timeout": 1621009,
+  "ext_pan_id": "feD0B60A6efeD0B6"
+}
 
 
 response = requests.post(url, headers=headers, params=params)

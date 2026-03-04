@@ -19,7 +19,8 @@ body = {
   "phone_number": "string",
   "password": "string",
   "email_password_delivery": "string",
-  "sms_password_delivery": "string"
+  "sms_password_delivery": "string"//,
+  //"vlan_override": 4094 //description	:	VLAN ID override assigned to the user (range 1-4094, Optional)
 }
 
 

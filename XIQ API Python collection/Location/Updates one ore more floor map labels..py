@@ -1,16 +1,32 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/locations/floor/bulk/label"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = 0
+body = [
+  {
+    "id": 5927,
+    "text": "string",
+    "x": 9049.548834611458,
+    "y": 9063.971998402072,
+    "floor_id": 9534,
+    "visible": False
+  },
+  {
+    "id": 1720,
+    "text": "string",
+    "x": 3576.3344818964724,
+    "y": 8594.292011583577,
+    "floor_id": 7918,
+    "visible": False
+  }
+]
 
 
-response = requests.post(url, headers=headers, params=params)
+response = requests.put(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

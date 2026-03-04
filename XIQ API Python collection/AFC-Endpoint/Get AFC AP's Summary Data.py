@@ -1,13 +1,16 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/aps/afc/query"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {}
-body = 0
+params = {'ownerId': '0'}
+body = {
+  "site_ids": [
+    0
+  ]
+}
 
 
 response = requests.post(url, headers=headers, params=params)

@@ -1,14 +1,13 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-group_id = 'User Group ID'
 access_token = '***'
 
 url = f"{baseUrl}/endusers"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
 body = {
-  "user_group_id": group_id,
+  "user_group_id": 0,
   "name": "string",
   "user_name": "string",
   "organization": "string",
@@ -18,7 +17,9 @@ body = {
   "phone_number": "string",
   "password": "string",
   "email_password_delivery": "string",
-  "sms_password_delivery": "string"
+  "sms_password_delivery": "string"//,
+  //"vlan_override": 4094 //description	:	VLAN ID override assigned to the user (range 1-4094, Optional)
+
 }
 
 

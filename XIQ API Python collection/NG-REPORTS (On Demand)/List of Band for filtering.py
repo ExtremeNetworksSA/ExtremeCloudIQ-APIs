@@ -11,25 +11,34 @@ def utc_seconds(str_dt, timezone):
 
          
 baseUrl = 'https://api.extremecloudiq.com'
+site_id = 'Site ID'
+building_id = 'Building ID'
+floor_id = 'Floor ID '
 myStartTime = utc_seconds('2024-12-07 02:30:00', 'US/Eastern')
 myEndTime = utc_seconds('2024-12-07 02:30:00', 'US/Eastern')
-site_id = 'Site ID'
 access_token = '***'
 
-url = f"{baseUrl}/users/grid"
+url = f"{baseUrl}/ng-reports/metadata/bands"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {'page': '1', 'limit': '10', 'startTime': f'{myStartTime}', 'endTime': f'{myEndTime}'}
+params = {}
 body = {
-  "source": [
-    "string",
-    "string"
-  ],
   "site_ids": [
     site_id
   ],
-  "status": True
+  "building_ids": [
+    building_id
+  ],
+  "floor_ids": [
+    floor_id
+  ],
+  "ssids": [
+    "string",
+    "string"
+  ],
+  "start_time": myStartTime,
+  "end_time": myEndTime
 }
-# search: string (disabled)
+
 
 response = requests.post(url, headers=headers, params=params)
 

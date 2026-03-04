@@ -4,7 +4,7 @@ baseUrl = 'https://api.extremecloudiq.com'
 ip_firewall_policy_id = 'IP Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/ip-firewall-policies/{ip_firewall_policy_id}/:detach"
+url = f"{baseUrl}/ip-firewall-policies/{ip_firewall_policy_id}/ip-firewall-rule/:detach"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
 body = 0

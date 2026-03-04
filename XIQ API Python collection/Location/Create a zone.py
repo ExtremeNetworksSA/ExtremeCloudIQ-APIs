@@ -1,13 +1,28 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/locations/folder/zones"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = 0
+body = {
+  "color": "string",
+  "coordinates": [
+    {
+      "x": 9277.69028270732,
+      "y": 1531.7758327851404
+    },
+    {
+      "x": 2262.6394749187084,
+      "y": 2384.3017933629085
+    }
+  ],
+  "folder_id": 7050,
+  "name": "string",
+  "zone_vertical_align": "BOTTOM",
+  "visible": True
+}
 
 
 response = requests.post(url, headers=headers, params=params)

@@ -21,8 +21,7 @@ body = {
   "restrict_number": 0,
   "user_group_ids": [
     0
-  ],
-  "credential_distribution_group_error_message": "string"
+  ]
 }
 
 

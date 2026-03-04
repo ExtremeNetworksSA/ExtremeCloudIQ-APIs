@@ -1,13 +1,41 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
+site_id = 'Site ID'
+building_id = 'Building ID'
+floor_id = 'Floor ID '
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/ng-reports/metadata/device"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = 0
+body = {
+  "site_ids": [
+    site_id
+  ],
+  "building_ids": [
+    building_id
+  ],
+  "floor_ids": [
+    floor_id
+  ],
+  "ssids": [
+    "string",
+    "string"
+  ],
+  "bands": [
+    "FIVE_GHZ",
+    "SIX_GHZ"
+  ],
+  "channels": [
+    1326,
+    7927
+  ],
+  "os_types": [
+    "string",
+    "string"
+  ]
+}
 
 
 response = requests.post(url, headers=headers, params=params)

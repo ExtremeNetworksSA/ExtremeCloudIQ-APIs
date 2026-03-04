@@ -9,7 +9,7 @@ params = {'backupFile': 'filename'}
 
 
 
-response = requests.post(url, headers=headers, params=params)
+response = requests.delete(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

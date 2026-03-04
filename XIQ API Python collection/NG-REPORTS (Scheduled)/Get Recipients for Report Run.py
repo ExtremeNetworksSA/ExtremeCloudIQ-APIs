@@ -1,16 +1,16 @@
 import requests
          
+reportRunId = '4987'
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/ng-reports/scheduled/runs/{reportRunId}/recipients"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {}
-body = 0
+params = {'keyword': 'string'}
 
 
-response = requests.post(url, headers=headers, params=params)
+
+response = requests.get(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

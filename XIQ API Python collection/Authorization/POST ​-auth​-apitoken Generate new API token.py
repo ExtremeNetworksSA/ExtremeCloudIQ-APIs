@@ -22,7 +22,11 @@ body = {
   "expire_time": myEpoch,
   "permissions": [
     "account:r"
-  ]
+  ]//,
+  //"rate_limit":{
+   // "hour": 7500,
+    //"second": 7500
+  //}
 }
 
 

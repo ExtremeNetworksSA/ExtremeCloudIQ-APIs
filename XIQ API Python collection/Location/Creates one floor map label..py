@@ -1,13 +1,20 @@
 import requests
          
+floorId = '4987'
 baseUrl = 'https://api.extremecloudiq.com'
-mac_firewall_policy_id = 'The MAC Firewall Policy ID'
 access_token = '***'
 
-url = f"{baseUrl}/mac-firewall-policies/{mac_firewall_policy_id}/mac-firewall-rule/:detach"
+url = f"{baseUrl}/locations/floor/{floorId}/label"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = 0
+body = {
+  "id": 2372,
+  "text": "string",
+  "x": 3135.4285906040946,
+  "y": 8260.689286505234,
+  "floor_id": 1969,
+  "visible": True
+}
 
 
 response = requests.post(url, headers=headers, params=params)
