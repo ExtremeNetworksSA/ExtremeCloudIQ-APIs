@@ -13,6 +13,7 @@ body = {
   ]
 }
 # includeUnassigned: false (disabled)
+# alertsTimeRange: None (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 

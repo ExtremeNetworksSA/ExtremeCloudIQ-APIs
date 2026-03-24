@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "d4096f85-2f6c-4a62-bf92-11f49596e043",
-    "name": "XIQ APIv2 25r7",
+    "name": "XIQ APIv2 25r8",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "4056946",
     "_collection_link": "https://go.postman.co/collection/4056946-d4096f85-2f6c-4a62-bf92-11f49596e043?source=collection_link"
@@ -16030,7 +16030,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -16049,7 +16050,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -16098,6 +16100,13 @@
                   "key": "includeUnassigned",
                   "value": "false",
                   "description": "Whether to include unassigned devices",
+                  "disabled": true
+                },
+                {
+                  "key": "alertsTimeRange",
+                  "value": null,
+                  "description": "Alerts Time Range in days (defaults to 1 day)\n\nDefault value : 1",
+                  "type": "text",
                   "disabled": true
                 }
               ]
@@ -16435,7 +16444,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -16451,7 +16461,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -16510,7 +16521,7 @@
                 },
                 {
                   "key": "keyword",
-                  "value": null,
+                  "value": "",
                   "description": "The Site Name Filter",
                   "disabled": true
                 },
@@ -16518,6 +16529,13 @@
                   "key": "includeUnassigned",
                   "value": "false",
                   "description": "Whether to include unassigned devices",
+                  "disabled": true
+                },
+                {
+                  "key": "alertsTimeRange",
+                  "value": null,
+                  "description": "Alerts Time Range in days (defaults to 1 day)\n\nDefault value : 1",
+                  "type": "text",
                   "disabled": true
                 }
               ]
@@ -16586,7 +16604,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -16605,7 +16624,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -16682,6 +16702,13 @@
                   "key": "includeUnassigned",
                   "value": "false",
                   "description": "Whether to include unassigned devices",
+                  "disabled": true
+                },
+                {
+                  "key": "alertsTimeRange",
+                  "value": null,
+                  "description": "Alerts Time Range in days (defaults to 1 day)\n\nDefault value : 1",
+                  "type": "text",
                   "disabled": true
                 }
               ]
@@ -16784,7 +16811,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -16803,7 +16831,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -16829,87 +16858,6 @@
                 "disabled": true
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/dashboard/wireless/dashboard/criteria",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "dashboard",
-                "wireless",
-                "dashboard",
-                "criteria"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create Criteria for Wireless Diagnostic Dashboard",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Successful POST request\", function () {",
-                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-                  "});",
-                  "pm.test(\"Body includes data \", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"client_health_criteria_param\");",
-                  "    console.log(pm.test)",
-                  "});",
-                  " pm.test(\"Response time is less than 1000ms\", function () {",
-                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
-                  "    });"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "protocolProfileBehavior": {
-            "disabledSystemHeaders": {}
-          },
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{jwttoken}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_health_criteria\": {\n    \"cpu_utilization\": 0,\n    \"memory_utilization\": 0,\n    \"poe\": 0,\n    \"wired_port_multicast\": 0,\n    \"wired_port_broadcast\": 0\n  },\n  \"client_health_criteria\": {\n    \"assoc_param_slow\": 0,\n    \"assoc_unit_slow\": \"string\",\n    \"auth_param_slow\": 0,\n    \"auth_unit_slow\": \"string\",\n    \"dhcp_param_slow\": 0,\n    \"dhcp_unit_slow\": \"string\",\n    \"roams_param_slow\": 0,\n    \"roams_unit_slow\": \"string\",\n    \"rssi_param\": 0,\n    \"rssi_unit\": \"string\",\n    \"snr_param\": 0,\n    \"snr_unit\": \"string\",\n    \"onboard_param\": 0,\n    \"onboard_unit\": \"string\"\n  },\n  \"usage_capacity_criteria\": {\n    \"channel_utilization\": 0,\n    \"lnk_err\": 0,\n    \"retries\": 0,\n    \"pkt_loss\": 0,\n    \"interference\": 0,\n    \"noise\": 0,\n    \"noise_unit\": \"string\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/dashboard/wireless/dashboard/criteria",
               "host": [
@@ -48579,6 +48527,88 @@
                   "value": "0",
                   "description": "Owner ID"
                 }
+              ]
+            },
+            "description": "Upload the capture files from a packet capture session, if files previously failed to be uploaded to XIQ cloud."
+          },
+          "response": []
+        },
+        {
+          "name": "List RTTS supported devcies",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"device_id\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"floor_ids\": [\n    0\n  ],\n  \"building_ids\": [\n    0\n  ],\n  \"site_ids\": [\n    0\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rtts/supported-devices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rtts",
+                "supported-devices"
               ]
             },
             "description": "Upload the capture files from a packet capture session, if files previously failed to be uploaded to XIQ cloud."

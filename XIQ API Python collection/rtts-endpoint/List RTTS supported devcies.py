@@ -1,22 +1,23 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-site_id = 'Site ID'
 access_token = '***'
 
-url = f"{baseUrl}/dashboard/sites-with-issues"
+url = f"{baseUrl}/rtts/supported-devices"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {'page': '1', 'limit': '10'}
+params = {}
 body = {
+  "floor_ids": [
+    0
+  ],
+  "building_ids": [
+    0
+  ],
   "site_ids": [
-    site_id
+    0
   ]
 }
-# sortField: Alerts (disabled)
-# sortOrder: ASC (disabled)
-# keyword:  (disabled)
-# includeUnassigned: false (disabled)
-# alertsTimeRange: None (disabled)
+
 
 response = requests.post(url, headers=headers, params=params)
 

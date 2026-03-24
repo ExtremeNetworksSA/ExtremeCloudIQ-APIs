@@ -14,8 +14,9 @@ body = {
 }
 # sortField: Alerts (disabled)
 # sortOrder: ASC (disabled)
-# keyword: None (disabled)
+# keyword:  (disabled)
 # includeUnassigned: false (disabled)
+# alertsTimeRange: None (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 
