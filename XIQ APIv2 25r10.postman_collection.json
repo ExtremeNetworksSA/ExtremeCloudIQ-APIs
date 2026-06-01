@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "d4096f85-2f6c-4a62-bf92-11f49596e043",
-    "name": "XIQ APIv2 25r8",
+    "_postman_id": "33f1a580-740b-4a57-95fc-bdcceb5e8108",
+    "name": "XIQ APIv2 25r10",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "4056946",
-    "_collection_link": "https://go.postman.co/collection/4056946-d4096f85-2f6c-4a62-bf92-11f49596e043?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/4056946-33f1a580-740b-4a57-95fc-bdcceb5e8108?source=collection_link"
   },
   "item": [
     {
@@ -11868,7 +11868,7 @@
                 {
                   "key": "deviceCategory",
                   "value": "WIRELESS",
-                  "description": "The device category - wired, wireless\n\nAvailable values : WIRED, WIRELESS, TPME",
+                  "description": "The device category - wired, wireless\n\nAvailable values : WIRED, WIRELESS, TPME, APPLIANCES",
                   "disabled": true
                 },
                 {
@@ -11908,7 +11908,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -11952,7 +11953,7 @@
                 {
                   "key": "deviceCategory",
                   "value": "WIRELESS",
-                  "description": "The device category - wired, wireless\n\nAvailable values : WIRED, WIRELESS",
+                  "description": "The device category - wired, wireless\n\nAvailable values : WIRED, WIRELESS, TPME, APPLIANCES",
                   "disabled": true
                 },
                 {
@@ -12071,7 +12072,7 @@
                 {
                   "key": "deviceCategory",
                   "value": "WIRELESS",
-                  "description": "The device category - wired, wireless\n\nAvailable values : WIRED, WIRELESS, TPME",
+                  "description": "The device category - wired, wireless\n\nAvailable values : WIRED, WIRELESS, TPME, APPLIANCES",
                   "disabled": true
                 },
                 {
@@ -19492,7 +19493,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -19507,7 +19509,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -19568,7 +19571,7 @@
                 {
                   "key": "macAddress",
                   "value": "{{client_mac}}",
-                  "description": "macAddress"
+                  "description": "The MAC address in format 'AABBCCDDEEFF' without separators. Accepted formats: (1) OUI only — first 6 hex characters (e.g., 'AABBCC'), (2) Full MAC address — 12 hex characters (e.g., 'AABBCCDDEEFF')"
                 },
                 {
                   "key": "includeUnassigned",
@@ -19591,7 +19594,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -19606,7 +19610,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -19657,7 +19662,7 @@
                 {
                   "key": "macAddress",
                   "value": "{{client_mac}}",
-                  "description": "macAddress"
+                  "description": "The MAC address in format 'AABBCCDDEEFF' without separators. Accepted formats: (1) OUI only — first 6 hex characters (e.g., 'AABBCC'), (2) Full MAC address — 12 hex characters (e.g., 'AABBCCDDEEFF')"
                 },
                 {
                   "key": "includeUnassigned",
@@ -19680,7 +19685,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -19695,7 +19701,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -19756,7 +19763,7 @@
                 {
                   "key": "macAddress",
                   "value": "{{client_mac}}",
-                  "description": "macAddress"
+                  "description": "The MAC address in format 'AABBCCDDEEFF' without separators. Accepted formats: (1) OUI only — first 6 hex characters (e.g., 'AABBCC'), (2) Full MAC address — 12 hex characters (e.g., 'AABBCCDDEEFF')"
                 },
                 {
                   "key": "includeUnassigned",
@@ -27306,6 +27313,170 @@
                 }
               ]
             }
+          },
+          "response": []
+        },
+        {
+          "name": "List locked clients",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"data\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/endusers/client/locked-list?page=1&limit=10&sortField=LOCKED_AT&sortOrder=ASC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "endusers",
+                "client",
+                "locked-list"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number, min = 1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Page Size, min = 1, max = 100"
+                },
+                {
+                  "key": "sortField",
+                  "value": "LOCKED_AT",
+                  "description": "The sort field"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "ASC",
+                  "description": "The sort order (ascending by default)"
+                }
+              ]
+            },
+            "description": "List a page of clients that are locked due to too many failed authentication attempts."
+          },
+          "response": []
+        },
+        {
+          "name": "Unlock locked clients",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"timeclient_macsstamp\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_macs\": [\n    \"{{client_mac}}\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/endusers/client/unlock",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "endusers",
+                "client",
+                "unlock"
+              ]
+            },
+            "description": "Unlock one or more locked clients by MAC address."
           },
           "response": []
         },
@@ -43781,6 +43952,436 @@
               ]
             },
             "description": "Upload the capture files from a packet capture session, if files previously failed to be uploaded to XIQ cloud."
+          },
+          "response": []
+        },
+        {
+          "name": "Get all connected clients on a floor",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"timestamp\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/essentials/eloc/clients/location/current-of-all-on-floor?parentId={{parent_id}}&floorId={{floor_id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "essentials",
+                "eloc",
+                "clients",
+                "location",
+                "current-of-all-on-floor"
+              ],
+              "query": [
+                {
+                  "key": "parentId",
+                  "value": "{{parent_id}}",
+                  "description": "Location Id of the floor's parent"
+                },
+                {
+                  "key": "floorId",
+                  "value": "{{floor_id}}",
+                  "description": "Location Id of the floor"
+                }
+              ]
+            },
+            "description": "Get the locations of all connected clients on a floor."
+          },
+          "response": []
+        },
+        {
+          "name": "Get the current location of the client",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"timestamp\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/essentials/eloc/clients/location/current-on-floor?parentId={{parent_id}}&floorId={{floor_id}}&clientMac={{client_mac}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "essentials",
+                "eloc",
+                "clients",
+                "location",
+                "current-on-floor"
+              ],
+              "query": [
+                {
+                  "key": "parentId",
+                  "value": "{{parent_id}}",
+                  "description": "Location Id of the floor's parent"
+                },
+                {
+                  "key": "floorId",
+                  "value": "{{floor_id}}",
+                  "description": "Location Id of the floor"
+                },
+                {
+                  "key": "clientMac",
+                  "value": "{{client_mac}}",
+                  "description": "The mac address of the client"
+                }
+              ]
+            },
+            "description": "Get the current location of the client on the floor plan."
+          },
+          "response": []
+        },
+        {
+          "name": "Get the client density map data",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/essentials/eloc/clients/location/density-map-data?floorId={{floor_id}}&parentId={{parent_id}}&date=2026-01-01",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "essentials",
+                "eloc",
+                "clients",
+                "location",
+                "density-map-data"
+              ],
+              "query": [
+                {
+                  "key": "floorId",
+                  "value": "{{floor_id}}",
+                  "description": "Location Id of the floor"
+                },
+                {
+                  "key": "parentId",
+                  "value": "{{parent_id}}",
+                  "description": "Location Id of the floor's parent"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-01-01",
+                  "description": "Date for the density map ('yyyy-MM-dd' format)"
+                }
+              ]
+            },
+            "description": "Get the density map of clients on the floor plan for a specific date, structured per hour."
+          },
+          "response": []
+        },
+        {
+          "name": "Get the last known location of the client in the specified interval",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"timestamp\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/essentials/eloc/clients/location/last-known-location-in-interval-on-floor?parentId={{parent_id}}&floorId={{floor_id}}&clientMac={{client_mac}}&interval=THIRTY_DAYS",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "essentials",
+                "eloc",
+                "clients",
+                "location",
+                "last-known-location-in-interval-on-floor"
+              ],
+              "query": [
+                {
+                  "key": "parentId",
+                  "value": "{{parent_id}}",
+                  "description": "Location Id of the floor's parent"
+                },
+                {
+                  "key": "floorId",
+                  "value": "{{floor_id}}",
+                  "description": "Location Id of the floor"
+                },
+                {
+                  "key": "clientMac",
+                  "value": "{{client_mac}}",
+                  "description": "The mac address of the client"
+                },
+                {
+                  "key": "interval",
+                  "value": "THIRTY_DAYS",
+                  "description": "Interval for the last known location"
+                }
+              ]
+            },
+            "description": "Get the last known location of the client on the floor plan in the specified interval."
+          },
+          "response": []
+        },
+        {
+          "name": "Get the path of the client in the specified interval",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"timestamp\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/essentials/eloc/clients/location/path-in-interval-on-floor?parentId={{parent_id}}&floorId={{floor_id}}&clientMac={{client_mac}}&startDate=2026-01-01 00:00&endDate=2026-01-01 23:59",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "essentials",
+                "eloc",
+                "clients",
+                "location",
+                "path-in-interval-on-floor"
+              ],
+              "query": [
+                {
+                  "key": "parentId",
+                  "value": "{{parent_id}}",
+                  "description": "Location Id of the floor's parent"
+                },
+                {
+                  "key": "floorId",
+                  "value": "{{floor_id}}",
+                  "description": "Location Id of the floor"
+                },
+                {
+                  "key": "clientMac",
+                  "value": "{{client_mac}}",
+                  "description": "The mac address of the client"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01 00:00",
+                  "description": "Start date for the path ('yyyy-MM-dd HH:mm' format)"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-01 23:59",
+                  "description": "End date for the path ('yyyy-MM-dd HH:mm' format)"
+                }
+              ]
+            },
+            "description": "Get the path of the client on the floor plan in the specified interval."
           },
           "response": []
         }
