@@ -57,6 +57,7 @@ body = {
 # timezoneOffset:  (disabled)
 # async: false (disabled)
 # includeUnassigned: false (disabled)
+# copilotLicenseStatuses: None (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 

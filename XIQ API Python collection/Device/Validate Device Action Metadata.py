@@ -1,15 +1,20 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
+device_id = 'device ID'
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/scheduled/reports/download"
+url = f"{baseUrl}/devices/validate-device-action"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {'reportRunId': '4987', 'fileFormat': 'XLSX'}
+params = {}
+body = {
+  "device_ids": [
+    device_id
+  ]
+}
 
-# preview: false (disabled)
 
-response = requests.get(url, headers=headers, params=params)
+response = requests.post(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

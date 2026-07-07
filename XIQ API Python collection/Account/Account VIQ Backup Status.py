@@ -3,11 +3,11 @@ import requests
 baseUrl = 'https://api.extremecloudiq.com'
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/scheduled/reports/download"
+url = f"{baseUrl}/account/viq/backup/status"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {'reportRunId': '4987', 'fileFormat': 'XLSX'}
+params = {}
 
-# preview: false (disabled)
+
 
 response = requests.get(url, headers=headers, params=params)
 

@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "33f1a580-740b-4a57-95fc-bdcceb5e8108",
-    "name": "XIQ APIv2 25r10",
+    "_postman_id": "739f93a8-8de4-4353-b2cb-dec42406302c",
+    "name": "XIQ APIv2 25r11",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "4056946",
-    "_collection_link": "https://go.postman.co/collection/4056946-33f1a580-740b-4a57-95fc-bdcceb5e8108?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/4056946-739f93a8-8de4-4353-b2cb-dec42406302c?source=collection_link"
   },
   "item": [
     {
@@ -138,7 +138,7 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "var myDate = new Date(\"July 2, 2022 02:30:00\"); // Your timezone!",
+                  "var myDate = new Date(\"April 9, 2027 02:30:00\"); // Your timezone!",
                   "",
                   "//Set in Environment",
                   "pm.environment.set(\"myEpoch\", myDate.getTime()/1000.0); //myEpoch is used in the body of this call. This is Epoch time in seconds."
@@ -1277,6 +1277,70 @@
                   "key": "reset",
                   "value": ""
                 }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Account VIQ Backup Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"include VIQ backup status\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"status\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/account/viq/backup/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "viq",
+                "backup",
+                "status"
               ]
             }
           },
@@ -12116,6 +12180,13 @@
                   "value": "true",
                   "description": "Whether to include only virtual stack (stacked_view = true) or also the stack members (stacked_view = false)\n\nDefault value : true",
                   "disabled": true
+                },
+                {
+                  "key": "copilotLicenseStatuses",
+                  "value": null,
+                  "description": "The copilot license status to filter\n\nAvailable values : ACTIVE, EXPIRED, UNLICENSED, NONE, NA, TRIAL",
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             }
@@ -12245,6 +12316,13 @@
                   "key": "includeUnassigned",
                   "value": "false",
                   "description": "Whether to include unassigned devices\n\nDefault value : false",
+                  "disabled": true
+                },
+                {
+                  "key": "copilotLicenseStatuses",
+                  "value": null,
+                  "description": "The copilot license status to filter\n\nAvailable values : ACTIVE, EXPIRED, UNLICENSED, NONE, NA, TRIAL",
+                  "type": "text",
                   "disabled": true
                 }
               ]
@@ -12504,6 +12582,77 @@
                 "thread",
                 "commissioner",
                 "stop"
+              ]
+            },
+            "description": "Stop the thread commissioner on the devices located in the buildings."
+          },
+          "response": []
+        },
+        {
+          "name": "Validate Device Action Metadata",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"supported_actions\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"device_ids\": [\n    {{device_id}}\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/devices/validate-device-action",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices",
+                "validate-device-action"
               ]
             },
             "description": "Stop the thread commissioner on the devices located in the buildings."
@@ -46800,7 +46949,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -46823,7 +46973,7 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/ng-reports/scheduled/reports/download?reportRunId=4987&fileFormat=XLSX&preview=false",
+              "raw": "{{baseUrl}}/ng-reports/scheduled/reports/download?reportRunId=4987&fileFormat=XLSX",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -46845,7 +46995,8 @@
                 {
                   "key": "preview",
                   "value": "false",
-                  "description": "Param to view in Preview mode, (supported only when fileFormat = PDF)"
+                  "description": "Param to view in Preview mode, (supported only when fileFormat = PDF)",
+                  "disabled": true
                 }
               ]
             },

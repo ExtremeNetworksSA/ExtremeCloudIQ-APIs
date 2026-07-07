@@ -58,6 +58,7 @@ body = {
 # async: false (disabled)
 # includeUnassigned: false (disabled)
 # stacked_view: true (disabled)
+# copilotLicenseStatuses: None (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 
