@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "739f93a8-8de4-4353-b2cb-dec42406302c",
-    "name": "XIQ APIv2 25r11",
+    "_postman_id": "fcb34bc3-ae74-452b-8ff0-d74cd9af3d1c",
+    "name": "XIQ APIv2 25r12",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "4056946",
-    "_collection_link": "https://go.postman.co/collection/4056946-739f93a8-8de4-4353-b2cb-dec42406302c?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/4056946-fcb34bc3-ae74-452b-8ff0-d74cd9af3d1c?source=collection_link"
   },
   "item": [
     {
@@ -188,7 +188,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"description\": \"Token for read account only\",\n  \"expire_time\": {{myEpoch}},\n  \"permissions\": [\n    \"account:r\"\n  ]//,\n  //\"rate_limit\":{\n   // \"hour\": 7500,\n    //\"second\": 7500\n  //}\n}",
+              "raw": "{\n  \"description\": \"Token for read account only\",\n  \"expire_time\": {{myEpoch}},\n  \"permissions\": [\n    \"auth:r\",\n    \"logout\",\n    \"alert:r\"\n  ]//,\n  //\"rate_limit\":{\n   // \"hour\": 7500,\n    //\"second\": 7500\n  //}\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2990,7 +2990,7 @@
                 {
                   "key": "limit",
                   "value": "10",
-                  "description": "Page Size, min = 1, max = 100"
+                  "description": "Page Size, min = 1, max = 500"
                 },
                 {
                   "key": "search",
@@ -21359,7 +21359,7 @@
                 {
                   "key": "limit",
                   "value": "10",
-                  "description": "Page Size, min = 1, max = 100"
+                  "description": "Page Size, min = 1, max = 500"
                 },
                 {
                   "key": "sortField",
@@ -25630,7 +25630,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -25669,7 +25670,7 @@
                 {
                   "key": "limit",
                   "value": "10",
-                  "description": "Page Size, min = 1, max = 100"
+                  "description": "Page Size, min = 1, max = 500"
                 },
                 {
                   "key": "order",
@@ -46392,7 +46393,8 @@
                   "    });"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -46433,7 +46435,7 @@
                 {
                   "key": "limit",
                   "value": "10",
-                  "description": "Page Size, min = 1, max = 100"
+                  "description": "Page Size, min = 1, max = 500"
                 },
                 {
                   "key": "frequency",
@@ -48198,6 +48200,85 @@
               ]
             },
             "description": "Upload the capture files from a packet capture session, if files previously failed to be uploaded to XIQ cloud."
+          },
+          "response": []
+        },
+        {
+          "name": "get Rm Afc Geolocaiton Floor Report",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"floor_report\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ap/afc/v2/floorReport/:deviceId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ap",
+                "afc",
+                "v2",
+                "floorReport",
+                ":deviceId"
+              ],
+              "variable": [
+                {
+                  "key": "deviceId",
+                  "value": "8064",
+                  "description": "device Id"
+                }
+              ]
+            }
           },
           "response": []
         },

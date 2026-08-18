@@ -21,7 +21,9 @@ body = {
   "description": "Token for read account only",
   "expire_time": myEpoch,
   "permissions": [
-    "account:r"
+    "auth:r",
+    "logout",
+    "alert:r"
   ]//,
   //"rate_limit":{
    // "hour": 7500,
