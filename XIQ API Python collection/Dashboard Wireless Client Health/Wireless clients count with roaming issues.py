@@ -6,13 +6,13 @@ access_token = '***'
 
 url = f"{baseUrl}/dashboard/wireless/client-health/roaming-issues"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {}
+params = {'includeUnassigned': 'false', 'connectionStatus': 'UNKNOWN'}
 body = {
   "site_ids": [
     site_id
   ]
 }
-# includeUnassigned: false (disabled)
+
 
 response = requests.post(url, headers=headers, params=params)
 

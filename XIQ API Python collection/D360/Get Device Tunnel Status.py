@@ -1,44 +1,16 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-site_id = 'Site ID'
-building_id = 'Building ID'
-floor_id = 'Floor ID '
+device_id = 'device ID'
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/metadata/device"
+url = f"{baseUrl}/d360/device/tunnel-status"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {}
-body = {
-  "site_ids": [
-    site_id
-  ],
-  "building_ids": [
-    building_id
-  ],
-  "floor_ids": [
-    floor_id
-  ],
-  "ssids": [
-    "string",
-    "string"
-  ],
-  "bands": [
-    "FIVE_GHZ",
-    "SIX_GHZ"
-  ],
-  "channels": [
-    1326,
-    7927
-  ],
-  "os_types": [
-    "string",
-    "string"
-  ]
-}
+params = {'deviceId': f'{device_id}'}
 
 
-response = requests.post(url, headers=headers, params=params)
+
+response = requests.get(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

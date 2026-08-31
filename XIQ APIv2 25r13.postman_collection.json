@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "fcb34bc3-ae74-452b-8ff0-d74cd9af3d1c",
-    "name": "XIQ APIv2 25r12",
+    "_postman_id": "ec07c110-8256-4bfb-84da-a5df96d8960b",
+    "name": "XIQ APIv2 25r13",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "4056946",
-    "_collection_link": "https://go.postman.co/collection/4056946-fcb34bc3-ae74-452b-8ff0-d74cd9af3d1c?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/4056946-ec07c110-8256-4bfb-84da-a5df96d8960b?source=collection_link"
   },
   "item": [
     {
@@ -5194,6 +5194,150 @@
               ]
             },
             "description": "Deletes one floor map label, given by its id, on condition it references the floor given by its id."
+          },
+          "response": []
+        },
+        {
+          "name": "List all walls on a floor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"data\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/locations/floor/:floorId/walls",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations",
+                "floor",
+                ":floorId",
+                "walls"
+              ],
+              "variable": [
+                {
+                  "key": "floorId",
+                  "value": "8267",
+                  "description": "The floor ID"
+                }
+              ]
+            },
+            "description": "Returns all wall segments belonging to the specified floor"
+          },
+          "response": []
+        },
+        {
+          "name": "Save walls on a floor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"walls\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"walls\": [\n    {\n      \"type_id\": 9457,\n      \"x1\": 7255.029545445447,\n      \"x2\": 6435.344006079665,\n      \"y1\": 1695.621669519367,\n      \"y2\": 6909.798272451648,\n      \"close\": 7935,\n      \"closed\": false\n    },\n    {\n      \"type_id\": 8525,\n      \"x1\": 8063.995114028888,\n      \"x2\": 6391.977576740296,\n      \"y1\": 9180.186253851572,\n      \"y2\": 8139.961808725981,\n      \"close\": 4411,\n      \"closed\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/locations/floor/:floorId/walls",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations",
+                "floor",
+                ":floorId",
+                "walls"
+              ],
+              "variable": [
+                {
+                  "key": "floorId",
+                  "value": "8267",
+                  "description": "The floor ID"
+                }
+              ]
+            },
+            "description": "Replaces the complete set of walls on the specified floor with the provided list. This is the only wall-write XAPI exposed for plan imports."
           },
           "response": []
         },
@@ -15507,6 +15651,70 @@
           "response": []
         },
         {
+          "name": "Get Device Tunnel Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"tunnel_policy_name\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/d360/device/tunnel-status?deviceId={{device_id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "d360",
+                "device",
+                "tunnel-status"
+              ],
+              "query": [
+                {
+                  "key": "deviceId",
+                  "value": "{{device_id}}",
+                  "description": "The device ID"
+                }
+              ]
+            },
+            "description": "Returns the tunnel policy status for a device, including the state of primary, secondary, and tertiary tunnel endpoints. Instead of raw IP addresses, the Tunnel Concentrator Service name is resolved where possible."
+          },
+          "response": []
+        },
+        {
           "name": "Get d360 Event Graph",
           "event": [
             {
@@ -19204,7 +19412,7 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/dashboard/wireless/client-health/connectivity-issues",
+              "raw": "{{baseUrl}}/dashboard/wireless/client-health/connectivity-issues?includeUnassigned=false&connectionStatus=UNKNOWN",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -19216,13 +19424,18 @@
               ],
               "query": [
                 {
-                  "key": "includeUnassigned",
-                  "value": "false",
                   "description": "Whether to include unassigned devices",
-                  "disabled": true
+                  "key": "includeUnassigned",
+                  "value": "false"
+                },
+                {
+                  "description": "Connection Status",
+                  "key": "connectionStatus",
+                  "value": "UNKNOWN"
                 }
               ]
-            }
+            },
+            "description": "Returns the wireless clients with connectivity issues based on the provided filters. You can filter the results by sites."
           },
           "response": []
         },
@@ -19487,7 +19700,7 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/dashboard/wireless/client-health/frequency-distribution",
+              "raw": "{{baseUrl}}/dashboard/wireless/client-health/frequency-distribution?includeUnassigned=false&connectionStatus=UNKNOWN",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -19498,14 +19711,19 @@
                 "frequency-distribution"
               ],
               "query": [
-                {
-                  "key": "includeUnassigned",
-                  "value": "false",
-                  "description": "Whether to include unassigned devices",
-                  "disabled": true
-                }
+                 {
+                   "key": "includeUnassigned",
+                   "value": "false",
+                   "description": "Whether to include unassigned devices"
+                 },
+                 {
+                   "key": "connectionStatus",
+                   "value": "UNKNOWN",
+                   "description": "Connection Status"
+                 }
               ]
-            }
+            },
+            "description": "Returns the wireless clients with different frequency distribution based on the provided filters. You can filter the results by sites."
           },
           "response": []
         },
@@ -20156,11 +20374,16 @@
                 {
                   "key": "includeUnassigned",
                   "value": "false",
-                  "description": "Whether to include unassigned devices",
-                  "disabled": true
+                  "description": "Whether to include unassigned devices"
+                },
+                {
+                  "key": "connectionStatus",
+                  "value": "UNKNOWN",
+                  "description": "Connection Status"
                 }
               ]
-            }
+            },
+            "description": "Returns the wireless clients with roaming issues based on the provided filters. You can filter the results by sites."
           },
           "response": []
         }
@@ -32143,7 +32366,8 @@
                 "radio-operating-modes",
                 "{{productType}}"
               ]
-            }
+            },
+            "description": "Modern AP hardware types include dual or triple band radios.\n        A limited subset of band combinations are supported.\n        Operating mode defines the supported band combinations per radio.    \n        Access Points with fixed band radios use GENERIC operating mode.  \n        SERVICE_2_5_6:   wifi0-2.4Ghz, wifi1-5Ghz, wifi2-6Ghz\n        SENSOR_SERVICE_5_6: wifi0-Tri-band sensor, wifi1-5Ghz, wifi2-6Ghz\n        SERVICE_5L_5H_6: wifi0-5G Low, wifi1-5G High, wifi2-6Ghz\n        SENSOR_SERVICE_5_2: wifi0-Tri-band sensor, wifi1-5GHz, wifi2-2.4Ghz\n        SERVICE_5L_5H_2: wifi0-5G Low, wifi1-5G High, wifi2-2.4Ghz\n        SERVICE_2_5H_5L: wifi2-2.4Ghz, wifi1-5G High, wifi0-5G Low\n        SERVICE_6L_5_6H: wifi0-6G Low, wifi1-5GHz, wifi2-6Ghz.\n        SERVICE_6H_5_6L: wifi0-6G High, wifi1-5GHz, wifi2-6Ghz Low.\n        SERVICE_2_5: wifi0-2.4Ghz, wifi1-5Ghz.\n        SERVICE_6_5: wifi0-6Ghz, wifi1-5Ghz."
           },
           "response": []
         },
@@ -35602,6 +35826,320 @@
           "response": []
         },
         {
+          "name": "List TCAPs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tcap-profiles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tcap-profiles"
+              ]
+            },
+            "description": "List a page of TCAPS."
+          },
+          "response": []
+        },
+        {
+          "name": "create Tcap",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"end_ip_address\": \"string\",\n  \"name\": \"string\",\n  \"netmask\": \"string\",\n  \"next_hop\": \"string\",\n  \"start_ip_address\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tcap-profiles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tcap-profiles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get Tcap",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tcap-profiles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tcap-profiles",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8267",
+                  "description": "TCAP ID"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Tcap",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"name\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"end_ip_address\": \"string\",\n  \"name\": \"string\",\n  \"netmask\": \"string\",\n  \"next_hop\": \"string\",\n  \"start_ip_address\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tcap-profiles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tcap-profiles",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8267",
+                  "description": "TCAP ID"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete Tcap",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful DELETE request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tcap-profiles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tcap-profiles",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8267",
+                  "description": "TCAP ID"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "List Tunnel Concentrators",
           "event": [
             {
@@ -35896,6 +36434,149 @@
                 "{{tunnel_conc_id}}"
               ]
             }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tunnel Concentrator license status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"locking_id\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tunnel-concentrators/:id/license",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tunnel-concentrators",
+                ":id",
+                "license"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8267",
+                  "description": "The Tunnel Concentrator device ID"
+                }
+              ]
+            },
+            "description": "Get the license status for the specified Tunnel Concentrator device."
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Tunnel Concentrator license",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "",
+                  "pm.test(\"Body includes data \", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"file\");",
+                  "    console.log(pm.test)",
+                  "});",
+                  " pm.test(\"Response time is less than 1000ms\", function () {",
+                  "        pm.expect(pm.response.responseTime).to.be.below(1000);",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwttoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"string\",\n  \"file\": \"v10_license-2328V-EFAB6.xlc\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tunnel-concentrators/:id/license/upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tunnel-concentrators",
+                ":id",
+                "license",
+                "upload"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "8267",
+                  "description": "The Tunnel Concentrator device ID"
+                }
+              ]
+            },
+            "description": "Upload a license file for the specified Tunnel Concentrator device."
           },
           "response": []
         }
@@ -47209,7 +47890,7 @@
       ]
     },
     {
-      "name": "afc-endpoint",
+      "name": "AFC",
       "item": [
         {
           "name": "request Afc Ftm Data",
@@ -49181,7 +49862,7 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/site/spectrum/?IsEmptyList=False",
+              "raw": "{{baseUrl}}/site/spectrum?IsEmptyList=False",
               "host": [
                 "{{baseUrl}}"
               ],

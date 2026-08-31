@@ -1,20 +1,16 @@
 import requests
          
+id_ = '8267'
 baseUrl = 'https://api.extremecloudiq.com'
-site_id = 'Site ID'
 access_token = '***'
 
-url = f"{baseUrl}/dashboard/wireless/client-health/frequency-distribution"
+url = f"{baseUrl}/tunnel-concentrators/{id_}/license"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {'includeUnassigned': 'false', 'connectionStatus': 'UNKNOWN'}
-body = {
-  "site_ids": [
-    site_id
-  ]
-}
+params = {}
 
 
-response = requests.post(url, headers=headers, params=params)
+
+response = requests.get(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

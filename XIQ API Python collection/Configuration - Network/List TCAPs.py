@@ -1,28 +1,15 @@
 import requests
          
 baseUrl = 'https://api.extremecloudiq.com'
-site_id = 'Site ID'
-building_id = 'Building ID'
-floor_id = 'Floor ID '
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/metadata/user"
+url = f"{baseUrl}/tcap-profiles"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
-body = {
-  "site_ids": [
-    site_id
-  ],
-  "building_ids": [
-   building_id
-  ],
-  "floor_ids": [
-    floor_id
-  ]
-}
 
 
-response = requests.post(url, headers=headers, params=params)
+
+response = requests.get(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

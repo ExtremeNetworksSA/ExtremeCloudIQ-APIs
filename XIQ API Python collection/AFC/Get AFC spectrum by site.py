@@ -3,10 +3,35 @@ import requests
 baseUrl = 'https://api.extremecloudiq.com'
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/metadata/connection-type"
+url = f"{baseUrl}/site/spectrum"
 headers = {'Authorization': f'Bearer {access_token}'}
-params = {}
-
+params = {'IsEmptyList': 'False'}
+body = {
+  "owner_id": 0,
+  "site_name": "string",
+  "region": "US",
+  "input_info": [
+    {
+      "serial_number": "string",
+      "coordinates": {
+        "latitude": 0,
+        "longitude": 0,
+        "timestamp": 0
+      },
+      "elevation": {
+        "height": 0,
+        "height_reference": "AGL",
+        "uncertainty": 0
+      },
+      "ellipse": {
+        "major_axis": 0,
+        "minor_axis": 0,
+        "orientation": 0
+      },
+      "environment": "INDOOR"
+    }
+  ]
+}
 
 
 response = requests.post(url, headers=headers, params=params)

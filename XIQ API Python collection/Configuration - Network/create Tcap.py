@@ -1,16 +1,21 @@
 import requests
          
-id_ = 'string'
 baseUrl = 'https://api.extremecloudiq.com'
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/download/reports/{id_}"
+url = f"{baseUrl}/tcap-profiles"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
+body = {
+  "end_ip_address": "string",
+  "name": "string",
+  "netmask": "string",
+  "next_hop": "string",
+  "start_ip_address": "string"
+}
 
 
-
-response = requests.get(url, headers=headers, params=params)
+response = requests.post(url, headers=headers, params=params)
 
 print("Status Code:", response.status_code)
 

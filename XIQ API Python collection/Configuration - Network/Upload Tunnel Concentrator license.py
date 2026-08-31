@@ -1,32 +1,15 @@
 import requests
          
+id_ = '8267'
 baseUrl = 'https://api.extremecloudiq.com'
-site_id = 'Site ID'
-building_id = 'Building ID'
-floor_id = 'Floor ID '
 access_token = '***'
 
-url = f"{baseUrl}/ng-reports/metadata/application"
+url = f"{baseUrl}/tunnel-concentrators/{id_}/license/upload"
 headers = {'Authorization': f'Bearer {access_token}'}
 params = {}
 body = {
-  "site_ids": [
-    site_id
-  ],
-  "building_ids": [
-    building_id
-  ],
-  "floor_ids": [
-   floor_id
-  ],
-  "usernames": [
-    "string",
-    "string"
-  ],
-  "client_macs": [
-    "string",
-    "string"
-  ]
+  "data": "string",
+  "file": "v10_license-2328V-EFAB6.xlc"
 }
 
 
