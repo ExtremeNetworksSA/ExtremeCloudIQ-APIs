@@ -13,6 +13,7 @@ body = {
   ]
 }
 # includeUnassigned: false (disabled)
+# connectionStatus: CONNECTED (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 

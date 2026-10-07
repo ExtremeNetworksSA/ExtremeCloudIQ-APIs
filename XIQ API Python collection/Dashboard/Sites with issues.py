@@ -16,7 +16,8 @@ body = {
 # sortOrder: ASC (disabled)
 # keyword:  (disabled)
 # includeUnassigned: false (disabled)
-# alertsTimeRange: None (disabled)
+# alertsTimeRange:  (disabled)
+# clientConnectionStatus: CONNECTED (disabled)
 
 response = requests.post(url, headers=headers, params=params)
 
